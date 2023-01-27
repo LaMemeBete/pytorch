@@ -405,21 +405,12 @@ plt.imshow(output_img[0].permute(1, 2, 0).detach().numpy())
 # %%
 def export_to_onnx(dummy_input):
     pytorch_model = Unet()
-    pytorch_model.load_state_dict(torch.load('model.pt'))
+    pytorch_model.load_state_dict(torch.load('1674843692_model.pt'))
     pytorch_model.eval()
     dummy_input = dummy_input
-    torch.onnx.export(pytorch_model, dummy_input, './web/onnx_model.onnx', verbose=True, verbose=True)
-# %%
-from pytorch2keras import pytorch_to_keras
-def export_to_keras(dummy_input, dim):
-    pytorch_model = Unet()
-    pytorch_model.load_state_dict(torch.load('model.pt'))
-    pytorch_model.eval()
-    dummy_input = dummy_input
-    pytorch_to_keras(model,dummy_input,input_shapes=dim, verbose=True)
+    torch.onnx.export(pytorch_model, dummy_input, './web/onnxruntime-nextjs-template/model/moshe-1.27.22.onnx', verbose=True)
 
 # %%
 dummy_input = data['img']
 export_to_onnx(dummy_input)
-export_to_keras(dummy_input, [(3, 256, 256,)])
 # %%

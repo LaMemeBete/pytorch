@@ -22,8 +22,8 @@ const ImageCanvas = (props: Props) => {
 
   // Load the image from the IMAGE_URLS array
   const getImage = () => {
-    const LOWER = 73;
-    const UPPER = 88;
+    const LOWER = 26;
+    const UPPER = 32;
     const random = Math.floor(Math.random() * (UPPER - LOWER) + LOWER);
     console.log({
       text: "Image id " + random,
@@ -54,6 +54,8 @@ const ImageCanvas = (props: Props) => {
     // Draw the image on the canvas
     const canvas = canvasRef.current;
     const ctxInput = canvas!.getContext("2d");
+    console.log(props.width)
+    console.log(props.height)
     image.onload = () => {
       ctxInput!.drawImage(image, 0, 0, props.width, props.height);
     };
@@ -71,6 +73,7 @@ const ImageCanvas = (props: Props) => {
 
   const submitInference = async () => {
     // Get the image data from the canvas and submit inference.
+    console.log(image.src)
     var [output, inferenceTime] = await inferenceSqueezenet(image.src);
 
     // Get the highest confidence.
@@ -87,9 +90,6 @@ const ImageCanvas = (props: Props) => {
     var R = output.data.slice(0, 65536);
     var G = output.data.slice(65536, 65536 * 2);
     var B = output.data.slice(65536 * 2, 65536 * 3);
-    console.log(R);
-    console.log(G);
-    console.log(B);
 
     for (var y = 0; y < height * width; y++) {
       buffer[y * 4] = R[y] * 255; // some R value [0, 255]

@@ -8,7 +8,7 @@ export async function runSqueezenetModel(
   // Create session and set options. See the docs here for more options:
   //https://onnxruntime.ai/docs/api/js/interfaces/InferenceSession.SessionOptions.html#graphOptimizationLevel
   const session = await ort.InferenceSession.create(
-    "./_next/static/chunks/pages/onnx_model.onnx",
+    "./_next/static/chunks/pages/moshe-1.27.22.onnx",
     { executionProviders: ["webgl"], graphOptimizationLevel: "all" }
   );
   console.log("Inference session created");

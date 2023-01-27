@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Theme conversion web playground</h1>
 
-        <ImageCanvas className="inputImage" width={240} height={240} />
+        <ImageCanvas className="inputImage" width={256} height={256} />
 
         <div id="result" className="mt-3"></div>
       </main>
